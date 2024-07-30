@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Modal from 'react-modal';
+import petImage from '../img/minggo.jpg'
+import musicImage from '../img/music.png'
+import noteImage from '../img/note.jpg'
 
 const SecondSection = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -8,10 +11,10 @@ const SecondSection = () => {
   const [modalContent, setModalContent] = useState({ title: '', description: '', imageUrl: '' });
 
   const interests = [
-    { title: '코딩', description: '저는 코딩을 즐깁니다.', imageUrl: 'coding_image.png' },
-    { title: '음악', description: '음악을 듣는 것을 좋아합니다.', imageUrl: 'music_image.png' },
-    { title: '여행', description: '여행을 통해 새로운 경험을 쌓는 것을 좋아합니다.', imageUrl: 'travel_image.png' },
-    // 필요한 만큼 추가
+    { title: '반려동물', description: '저희집 강아지 밍고라고 합니다! <br> 너무 귀엽지 않나요', imageUrl: petImage },
+    { title: '노래', description: '음악을 듣는 걸 좋아해요! <br>Music...is..my life...', imageUrl: musicImage },
+    { title: '필기', description: '손으로 쓰면서 계획하는 걸 좋아해요.<br>펜으로 쓰는 스걱거림을 좋아해서 필기를 자주 하는 편입니다!', imageUrl: noteImage },
+    // 필요한 만큼 추가예정 
   ];
 
   const pages = [
@@ -59,7 +62,7 @@ const SecondSection = () => {
             <img src="javascript_logo.png" alt="JavaScript" />
             <p>JavaScript</p>
           </Skill>
-          {/* 필요한 만큼 추가 */}
+          {/* 필요한 만큼 추가예정 */}
         </SkillsContainer>
       )
     },
@@ -84,7 +87,7 @@ const SecondSection = () => {
             <ListItem>MBTI 는 ESTP 입니다.👍</ListItem>
             <ListItem>🐶강아지를 좋아해요!!</ListItem>
             <ListItem>🥽물에서 노는 걸 좋아합니다!</ListItem>
-            {/* 추가 정보들 */}
+            {/* 추가 정보추가예정 */}
           </ListContainer>
         </TMISection>
       )
@@ -134,8 +137,8 @@ const SecondSection = () => {
         }}
       >
         <h2>{modalContent.title}</h2>
-        <img src={modalContent.imageUrl} alt={modalContent.title} />
-        <p>{modalContent.description}</p>
+        <ModalImage src={modalContent.imageUrl} alt={modalContent.title} />
+        <p dangerouslySetInnerHTML={{ __html: modalContent.description }}></p>
         <button onClick={closeModal}>Close</button>
       </Modal>
     </Section>
@@ -250,7 +253,7 @@ const Subsection = styled.div`
 `;
 
 const TMISection = styled.section`
-  width: 100vw; /* 전체 너비 */
+  width: 100vw; 
   padding: 20px;
   display: flex;
   justify-content: center;
@@ -259,19 +262,26 @@ const TMISection = styled.section`
 const ListContainer = styled.ul`
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 4단으로 나누기 */
-  gap: 20px; /* 항목 간의 간격 */
-  list-style: none; /* 기본 리스트 스타일 제거 */
-  padding: 0; /* 기본 패딩 제거 */
-  margin: 0; /* 기본 마진 제거 */
-  width: 100%; /* 전체 너비 */
-  max-width: 1200px; /* 최대 너비 설정 (옵션) */
+  gap: 20px; 
+  list-style: none; 
+  padding: 0; 
+  margin: 0; 
+  width: 100%; 
+  max-width: 1200px; 
 `;
 
 const ListItem = styled.li`
   font-size: 1.2em;
-  color: black; /* 텍스트 색상 */
+  color: black; 
   padding: 10px;
-  background-color: #ffffff; /* 배경색 (옵션) */
-  border-radius: 5px; /* 모서리 둥글게 */
+  background-color: #ffffff; 
+  border-radius: 5px; 
   text-align: center;
+`;
+
+const ModalImage = styled.img`
+  width: 300px; 
+  height: auto; 
+  max-width: 100%; 
+  border-radius: 10px; 
 `;
