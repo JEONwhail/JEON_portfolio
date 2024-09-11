@@ -16,6 +16,7 @@ const ThirdSection = () => {
   return (
     <Section>
       <h1>Third Section</h1>
+      <h1>Third Section제발</h1>
     </Section>
   );
 };
