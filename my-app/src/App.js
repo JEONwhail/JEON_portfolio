@@ -9,7 +9,7 @@ import FourthSection from './components/FourthSection';
 
 const App = () => {
   const [currentSection, setCurrentSection] = useState(0);
-  const sections = [<FirstSection goToSecondSection={() => setCurrentSection(1)} />, <SecondSection />, <ThirdSection />, <FourthSection/>];
+  const sections = [<FirstSection goToSecondSection={() => setCurrentSection(1)} />, <SecondSection />, <ThirdSection />, <FourthSection />];
 
   const handleScroll = (event) => {
     const { deltaY } = event;
@@ -25,7 +25,7 @@ const App = () => {
     return () => {
       window.removeEventListener('wheel', handleScroll);
     };
-  }, [currentSection]);
+  }, [currentSection]); 
 
   return (
     <Wrapper>

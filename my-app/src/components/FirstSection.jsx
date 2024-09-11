@@ -10,23 +10,31 @@ const ButtonComponent = ({ text, onClick }) => {
   );
 };
 
-// FirstSection 컴포넌트
-const FirstSection = ({ goToSecondSection }) => {
+// 랜덤 단어를 가져오는 함수
+const getRandomWord = () => {
   const words = [
     "활발한 ", "키큰 ", "박성진부인 ", "배우는 걸 좋아하는 ", 
     "발랄한 ", "재밌는 ", "3년차인 ", "데이식스 ", 
     "몬스타엑스 ", "아무거또 없는... "
   ];
+  return words[Math.floor(Math.random() * words.length)];
+};
 
+const FirstSection = ({ goToSecondSection }) => {
   const [displayedText, setDisplayedText] = useState('');
   const [isTyping, setIsTyping] = useState(true);
   const [textIndex, setTextIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
-  const [texts, setTexts] = useState([
-    "안녕하세요\n",
-    `${words[Math.floor(Math.random() * words.length)]}퍼블리셔 \n`,
-    "김지연의 포트폴리오 입니다"
-  ]);
+  const [texts, setTexts] = useState([]);
+
+  useEffect(() => {
+    // texts를 랜덤 단어로 초기화
+    setTexts([
+      "안녕하세요\n",
+      `${getRandomWord()}퍼블리셔 \n`,
+      "김지연의 포트폴리오 입니다"
+    ]);
+  }, []); // 빈 배열로 한 번만 실행되도록 설정
 
   useEffect(() => {
     const typeText = () => {
