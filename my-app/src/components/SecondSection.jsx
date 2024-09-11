@@ -1,20 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Modal from 'react-modal';
-import petImage from '../img/minggo.jpg'
-import musicImage from '../img/music.png'
-import noteImage from '../img/note.jpg'
+
+// 이미지 + 아이콘 임포트 영역
+import petImage from '../img/minggo.jpg';
+import musicImage from '../img/music.png';
+import noteImage from '../img/note.jpg';
+
+// SVG 아이콘 임포트
+import { ReactComponent as HtmlIcon } from '../icon/html5.svg';
+import { ReactComponent as CssIcon } from '../icon/css3.svg';
+import { ReactComponent as JsIcon } from '../icon/javascript.svg';
 
 const SecondSection = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [modalContent, setModalContent] = useState({ title: '', description: '', imageUrl: '' });
+  const [interestModalIsOpen, setInterestModalIsOpen] = useState(false);
+  const [interestModalContent, setInterestModalContent] = useState({ title: '', description: '', imageUrl: '' });
+
+  const [counter, setCounter] = useState(0);
+  const [skillModalIsOpen, setSkillModalIsOpen] = useState(false);
+  const [targetCount, setTargetCount] = useState(0); // 목표 숫자 설정
+  const [isCounting, setIsCounting] = useState(false); // 카운트 상태 추가
 
   const interests = [
     { title: '반려동물', description: '저희집 강아지 밍고라고 합니다! <br> 너무 귀엽지 않나요', imageUrl: petImage },
     { title: '노래', description: '음악을 듣는 걸 좋아해요! <br>Music...is..my life...', imageUrl: musicImage },
     { title: '필기', description: '손으로 쓰면서 계획하는 걸 좋아해요.<br>펜으로 쓰는 스걱거림을 좋아해서 필기를 자주 하는 편입니다!', imageUrl: noteImage },
-    // 필요한 만큼 추가예정 
+  ];
+
+  // 스킬별 목표 숫자 설정
+  const skills = [
+    { name: 'HTML5', icon: <HtmlIcon width={100} height={100} />, target: 90 }, 
+    { name: 'CSS3', icon: <CssIcon width={100} height={100} />, target: 80 },
+    { name: 'JavaScript', icon: <JsIcon width={100} height={100} />, target: 70 }
   ];
 
   const pages = [
@@ -50,19 +68,12 @@ const SecondSection = () => {
       title: "현재 저는 이런 것들을 배웠어요!",
       content: (
         <SkillsContainer>
-          <Skill>
-            <img src="html5_logo.png" alt="HTML5" />
-            <p>HTML5</p>
-          </Skill>
-          <Skill>
-            <img src="css3_logo.png" alt="CSS3" />
-            <p>CSS3</p>
-          </Skill>
-          <Skill>
-            <img src="javascript_logo.png" alt="JavaScript" />
-            <p>JavaScript</p>
-          </Skill>
-          {/* 필요한 만큼 추가예정 */}
+          {skills.map((skill, index) => (
+            <Skill key={index} onClick={() => openSkillModal(skill.target)}>
+              {skill.icon}
+              <p>{skill.name}</p>
+            </Skill>
+          ))}
         </SkillsContainer>
       )
     },
@@ -71,36 +82,53 @@ const SecondSection = () => {
       content: (
         <PuzzleContainer>
           {interests.map((interest, index) => (
-            <PuzzlePiece key={index} onClick={() => openModal(interest)}>
+            <PuzzlePiece key={index} onClick={() => openInterestModal(interest)}>
               {interest.title}
             </PuzzlePiece>
           ))}
         </PuzzleContainer>
       )
     },
-    {
-      title: "TMI",
-      content: (
-        <TMISection>
-          <ListContainer>
-            <ListItem>💚 저는 초록색을 좋아해요 💚</ListItem>
-            <ListItem>MBTI 는 ESTP 입니다.👍</ListItem>
-            <ListItem>🐶강아지를 좋아해요!!</ListItem>
-            <ListItem>🥽물에서 노는 걸 좋아합니다!</ListItem>
-            {/* 추가 정보추가예정 */}
-          </ListContainer>
-        </TMISection>
-      )
-    }
   ];
 
-  const openModal = (interest) => {
-    setModalContent(interest);
-    setModalIsOpen(true);
+  const openInterestModal = (interest) => {
+    setInterestModalContent(interest);
+    setInterestModalIsOpen(true);
   };
 
-  const closeModal = () => {
-    setModalIsOpen(false);
+  const closeInterestModal = () => {
+    setInterestModalIsOpen(false);
+  };
+
+  // 스킬 클릭 시 목표 숫자를 받아서 모달을 여는 함수
+  const openSkillModal = (target) => {
+    setSkillModalIsOpen(true);
+    setTargetCount(target);
+    setCounter(0); // 카운터 초기화
+    setIsCounting(true); // 카운트 시작
+  };
+
+  // 카운트 진행 함수
+  useEffect(() => {
+    if (isCounting && counter < targetCount) {
+      const interval = setInterval(() => {
+        setCounter((prev) => {
+          if (prev >= targetCount) {
+            clearInterval(interval);
+            setIsCounting(false); // 카운트 중지
+            return targetCount;
+          }
+          return prev + 1;
+        });
+      }, 50);
+
+      return () => clearInterval(interval); // 컴포넌트 언마운트 시 클리어
+    }
+  }, [counter, isCounting, targetCount]);
+
+  const closeSkillModal = () => {
+    setSkillModalIsOpen(false);
+    setCounter(0); // 모달 닫을 때 카운터 초기화
   };
 
   const handlePrevClick = () => {
@@ -121,9 +149,11 @@ const SecondSection = () => {
         <Button onClick={handlePrevClick}>{"<"}</Button>
         <Button onClick={handleNextClick}>{">"}</Button>
       </ButtonGroup>
+
+      {/* 관심사 모달 */}
       <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
+        isOpen={interestModalIsOpen}
+        onRequestClose={closeInterestModal}
         contentLabel="관심사 설명"
         style={{
           content: {
@@ -136,10 +166,32 @@ const SecondSection = () => {
           }
         }}
       >
-        <h2>{modalContent.title}</h2>
-        <ModalImage src={modalContent.imageUrl} alt={modalContent.title} />
-        <p dangerouslySetInnerHTML={{ __html: modalContent.description }}></p>
-        <button onClick={closeModal}>Close</button>
+        <h2>{interestModalContent.title}</h2>
+        <ModalImage src={interestModalContent.imageUrl} alt={interestModalContent.title} />
+        <p dangerouslySetInnerHTML={{ __html: interestModalContent.description }}></p>
+        <button onClick={closeInterestModal}>Close</button>
+      </Modal>
+
+      {/* 스킬 모달 */}
+      <Modal
+        isOpen={skillModalIsOpen}
+        onRequestClose={closeSkillModal}
+        contentLabel="스킬 업로드"
+        style={{
+          content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)'
+          }
+        }}
+      >
+        <h2>Skill Loading...</h2>
+        {/* 카운터가 목표 숫자에 도달할 때까지 숫자를 출력 */}
+        <p>{counter}% 가능해요!</p>
+        <button onClick={closeSkillModal}>Close</button>
       </Modal>
     </Section>
   );
@@ -161,9 +213,9 @@ const Section = styled.div`
 const Content = styled.div`
   text-align: center;
   width: 100%;
-  max-width: 800px; 
-  margin: 0 20px; 
-  flex: 1; 
+  max-width: 800px;
+  margin: 0 20px;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -205,14 +257,9 @@ const Skill = styled.div`
   align-items: center;
   text-align: center;
 
-  img {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 10px;
-  }
-
   p {
     font-size: 1.2em;
+    margin-top: 10px;
   }
 `;
 
@@ -250,33 +297,6 @@ const Subsection = styled.div`
     font-size: 1.2em;
     line-height: 1.3;
   }
-`;
-
-const TMISection = styled.section`
-  width: 100vw; 
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-`;
-
-const ListContainer = styled.ul`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4단으로 나누기 */
-  gap: 20px; 
-  list-style: none; 
-  padding: 0; 
-  margin: 0; 
-  width: 100%; 
-  max-width: 1200px; 
-`;
-
-const ListItem = styled.li`
-  font-size: 1.2em;
-  color: black; 
-  padding: 10px;
-  background-color: #ffffff; 
-  border-radius: 5px; 
-  text-align: center;
 `;
 
 const ModalImage = styled.img`

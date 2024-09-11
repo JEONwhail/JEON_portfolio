@@ -5,10 +5,11 @@ import SecondSection from './components/SecondSection';
 import ThirdSection from './components/ThirdSection';
 import Indicator from './components/Indicator';
 import GlobalStyle from './GlobalStyle';
+import FourthSection from './components/FourthSection';
 
 const App = () => {
   const [currentSection, setCurrentSection] = useState(0);
-  const sections = [<FirstSection goToSecondSection={() => setCurrentSection(1)} />, <SecondSection />, <ThirdSection />];
+  const sections = [<FirstSection goToSecondSection={() => setCurrentSection(1)} />, <SecondSection />, <ThirdSection />, <FourthSection/>];
 
   const handleScroll = (event) => {
     const { deltaY } = event;
