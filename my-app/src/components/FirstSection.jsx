@@ -13,9 +13,9 @@ const ButtonComponent = ({ text, onClick }) => {
 // 랜덤 단어를 가져오는 함수
 const getRandomWord = () => {
   const words = [
-    "활발한 ", "키큰 ", "박성진부인 ", "배우는 걸 좋아하는 ", 
-    "발랄한 ", "재밌는 ", "3년차인 ", "데이식스 ", 
-    "몬스타엑스 ", "아무거또 없는... "
+    "활발한 ", "발랄한 ", "새로운게 재미있는 ", "배우는 걸 좋아하는 ", 
+    "재미있게 살고있는 ", "3년차인 ", "두렵지않은 ", 
+    "친화력 넘치는 ", "행복이란 단어가 마냥 좋은 "
   ];
   return words[Math.floor(Math.random() * words.length)];
 };
@@ -63,7 +63,7 @@ const FirstSection = ({ goToSecondSection }) => {
         <TypingText>{displayedText}</TypingText>
       </Content>
       <ButtonGroup>
-        <ButtonComponent text="다음 영역으로 이동" onClick={goToSecondSection} />
+        <ButtonComponent text="제가 더 궁금하신가요?!" onClick={goToSecondSection} />
       </ButtonGroup>
     </Section>
   );

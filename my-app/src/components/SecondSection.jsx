@@ -11,12 +11,28 @@ import noteImage from '../img/note.jpg';
 import { ReactComponent as HtmlIcon } from '../icon/html5.svg';
 import { ReactComponent as CssIcon } from '../icon/css3.svg';
 import { ReactComponent as JsIcon } from '../icon/javascript.svg';
+import { ReactComponent as AWSIcon } from '../icon/amazonwebservices.svg';
+import { ReactComponent as DbeaverIcon } from '../icon/dbeaver.svg';
+import { ReactComponent as EclipseIcon } from '../icon/eclipseide.svg';
+import { ReactComponent as FigmaIcon } from '../icon/figma.svg';
+import { ReactComponent as GithubIcon } from '../icon/github.svg';
+import { ReactComponent as IntellijIcon } from '../icon/intellijidea.svg';
+import { ReactComponent as MariadbIcon } from '../icon/mariadb.svg';
+import { ReactComponent as NetlifyIcon } from '../icon/netlify.svg';
+import { ReactComponent as NotionIcon } from '../icon/notion.svg';
+import { ReactComponent as PostmanIcon } from '../icon/postman.svg';
+import { ReactComponent as ReactIcon } from '../icon/react.svg';
+import { ReactComponent as ReacthookIcon } from '../icon/reacthookform.svg';
+import { ReactComponent as ReactrouterIcon } from '../icon/reactrouter.svg';
+import { ReactComponent as SlackIcon } from '../icon/slack.svg';
+import { ReactComponent as SpringIcon } from '../icon/spring.svg';
+import { ReactComponent as SpringbootIcon } from '../icon/springboot.svg';
+import { ReactComponent as StyledcomponentsIcon } from '../icon/styledcomponents.svg';
 
 const SecondSection = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [interestModalIsOpen, setInterestModalIsOpen] = useState(false);
   const [interestModalContent, setInterestModalContent] = useState({ title: '', description: '', imageUrl: '' });
-
   const [counter, setCounter] = useState(0);
   const [skillModalIsOpen, setSkillModalIsOpen] = useState(false);
   const [targetCount, setTargetCount] = useState(0); // 목표 숫자 설정
@@ -30,9 +46,26 @@ const SecondSection = () => {
 
   // 스킬별 목표 숫자 설정
   const skills = [
-    { name: 'HTML5', icon: <HtmlIcon width={100} height={100} />, target: 90 }, 
-    { name: 'CSS3', icon: <CssIcon width={100} height={100} />, target: 80 },
-    { name: 'JavaScript', icon: <JsIcon width={100} height={100} />, target: 70 }
+    { name: 'HTML5', icon: <HtmlIcon width={100} height={100} />, target: 97 }, 
+    { name: 'CSS3', icon: <CssIcon width={100} height={100} />, target: 98 },
+    { name: 'AWS', icon: <AWSIcon width={100} height={100} />, target: 45 },
+    { name: 'dbeaver', icon: <DbeaverIcon width={100} height={100} />, target: 50 },
+    { name: 'eclipse', icon: <EclipseIcon width={100} height={100} />, target: 67 },
+    { name: 'figma', icon: <FigmaIcon width={100} height={100} />, target: 90 },
+    { name: 'github', icon: <GithubIcon width={100} height={100} />, target: 93 },
+    { name: 'intellijidea', icon: <IntellijIcon width={100} height={100} />, target: 45 },
+    { name: 'mariadb', icon: <MariadbIcon width={100} height={100} />, target: 50 },
+    { name: 'netlify', icon: <NetlifyIcon width={100} height={100} />, target: 80 },
+    { name: 'notion', icon: <NotionIcon width={100} height={100} />, target: 97 },
+    { name: 'postman', icon: <PostmanIcon width={100} height={100} />, target: 66 },
+    { name: 'react', icon: <ReactIcon width={100} height={100} />, target: 87 },
+    { name: 'reacthookform', icon: <ReacthookIcon width={100} height={100} />, target: 84 },
+    { name: 'reactrouter', icon: <ReactrouterIcon width={100} height={100} />, target: 83 },
+    { name: 'slack', icon: <SlackIcon width={100} height={100} />, target: 75 },
+    { name: 'spring', icon: <SpringIcon width={100} height={100} />, target: 60 },
+    { name: 'springboot', icon: <SpringbootIcon width={100} height={100} />, target: 59 },
+    { name: 'styledcomponents', icon: <StyledcomponentsIcon width={100} height={100} />, target: 93 },
+    { name: 'JavaScript', icon: <JsIcon width={100} height={100} />, target: 86 }
   ];
 
   const pages = [
@@ -41,7 +74,7 @@ const SecondSection = () => {
       content: (
         <>
           <Subsection>
-            <h3>퍼블리셔?</h3>
+            <h3>퍼블리셔를 알게 된 계기</h3>
             <p>유기견 보호소에 관심이 있어 SNS로 자주 보다가 사이트를 들어가게 되었습니다.
             유기견 보호소 사이트는 자극적인 색상과 굵은 폰트로만 이루어져 있어,
             사람들의 관심을 끌 수 있을까 라는 생각이 들었고 홈페이지를 만드는 방법을 찾아보다  
@@ -49,14 +82,14 @@ const SecondSection = () => {
             프로그램들이 많았고 국비 지원 프로그램을 통해 퍼블리셔 과정을 배우게 되었습니다. </p>
           </Subsection>
           <Subsection>
-            <h3>풀스택?? </h3>
+            <h3>풀스택을 배우게 된 계기 </h3>
             <p>퍼블리셔의 직업으로 3년을 근무하면서, 디자인의 업무 보다는 코드를 치면서
               재밌는 감정을 느끼게 되었고 더 배울 수 있을까 라는 궁금증으로 국비 지원을
               한번 더 지원해 배우게 되었습니다.
             </p>
           </Subsection>
           <Subsection>
-            <h3>목표</h3>
+            <h3>앞으로의 목표</h3>
             <p>퍼블리셔와 프론트앤드 개발자를 하면서 아직 어려운 백엔드 개발자를 공부하면서,
               완전한 풀스택 개발자가 되어버리고 싶다..!
             </p>
