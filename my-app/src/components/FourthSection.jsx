@@ -40,7 +40,7 @@ const Text = styled.p`
 
 const RightSection = styled.div`
   width: 50%;
-  padding: 3em;
+  padding: 20em 3em 3em ;
   background-color: #fff8f0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -95,7 +95,11 @@ function FourthSection() {
       <LeftSection>
         <ImagePlaceholder>IMG</ImagePlaceholder>
         <Text>
-          저는 퍼블리셔 3년차인 김지연 이라고 합니다! <br/>배울 것도 많은 아직이지만, <br/> 더 나아갈 수 있다는 목표가 생긴 것만으로도 더 배우고 싶고,<br/> 앞으로 나아가고 싶어요! <br/>여기까지 봐주셔서 감사합니다!
+          저는 퍼블리셔 3년차인 김지연 이라고 합니다! <br/>
+          배울 것도 많은 아직이지만, <br/> 
+          더 나아갈 수 있다는 목표가 생긴 것만으로도 더 배우고 싶고,<br/> 
+          앞으로 나아가고 싶어요! <br/>
+          여기까지 봐주셔서 감사합니다!
         </Text>
       </LeftSection>
       <RightSection>
@@ -127,6 +131,11 @@ function FourthSection() {
             <li>REACT</li>
             <li>Netlify</li>
             <li>Styled-components</li>
+            <li>CSS3</li>
+            <li>Figma</li>
+            <li>Github</li>
+            <li>Netlify</li>
+            <li>Notion</li>
           </ul>
         </FeatureSection>
       </RightSection>
